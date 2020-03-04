@@ -1,4 +1,7 @@
 # Docker Base Image for Trivadis Engineering
+
+**REPOSITORY HAS BEEN MOVED TO: https://github.com/oehrlis/docker/tree/master/OracleODSEE**
+
 Docker base image used for miscellaneous Oracle Directory Enterprise Edition engineering .
 
 ## Content
