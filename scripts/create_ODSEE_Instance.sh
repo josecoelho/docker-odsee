@@ -3,18 +3,18 @@
 # Trivadis AG, Infrastructure Managed Services
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # ---------------------------------------------------------------------------
-# Name.......: create_OUD_instance.sh 
+# Name.......: create_OUD_instance.sh
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
 # Date.......: 2017.12.04
-# Revision...: 
-# Purpose....: Helper script to create the OUD instance 
+# Revision...:
+# Purpose....: Helper script to create the OUD instance
 # Notes......: Script to create an OUD instance. If configuration files are
 #              provided, the will be used to configure the instance.
 # Reference..: --
 # License....: CDDL 1.0 + GPL 2.0
 # ---------------------------------------------------------------------------
-# Modified...: 
+# Modified...:
 # see git revision history for more information on changes/updates
 # TODO.......:
 # ---------------------------------------------------------------------------
@@ -27,7 +27,7 @@ export SAMPLE_DATA=${SAMPLE_DATA:-'TRUE'}               # Flag to load sample da
 
 # default folder for ODSEE instance init scripts
 export ODSEE_INSTANCE_INIT=${ODSEE_INSTANCE_INIT:-$ORACLE_DATA/scripts}
-export ODSEE_HOME=${ODSEE_HOME:-"$ORACLE_BASE/product/$ORACLE_HOME_NAME"}    
+export ODSEE_HOME=${ODSEE_HOME:-"$ORACLE_BASE/product/$ORACLE_HOME_NAME"}
 # - End of Customization ----------------------------------------------------
 
 echo "--- Setup ODSEE environment on volume ${ORACLE_DATA} --------------------"
@@ -53,7 +53,7 @@ echo "${ODSEE_INSTANCE}:${PORT}:${PORT_SSL}:${PORT_ADMIN}:${PORT_REP}:ODSEE" >>$
 # Create default config file in ETC_BASE in case they are not yet available...
 for i in oud._DEFAULT_.conf oudenv_custom.conf oudenv.conf oudtab; do
     if [ ! -f "${ORACLE_DATA}/etc/${i}" ]; then
-        cp ${ORACLE_BASE}/templates/etc/${i} ${ORACLE_DATA}/etc
+        cp ${ORACLE_BASE}/local/oudbase/templates/etc/${i} ${ORACLE_DATA}/etc
     fi
 done
 
@@ -65,7 +65,7 @@ for i in oudenv.conf oudtab; do
 done
 
 # Load OUD environment for this instance
-. ${ORACLE_BASE}/local/bin/oudenv.sh ${ODSEE_INSTANCE} SILENT
+. ${ORACLE_BASE}/local/oudbase/bin/oudenv.sh ${ODSEE_INSTANCE} SILENT
 
 # generate a password
 if [ -z ${ADMIN_PASSWORD} ]; then

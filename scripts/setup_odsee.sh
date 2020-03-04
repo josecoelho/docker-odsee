@@ -3,24 +3,24 @@
 # Trivadis AG, Infrastructure Managed Services
 # Saegereistrasse 29, 8152 Glattbrugg, Switzerland
 # ----------------------------------------------------------------------
-# Name.......: setup_odsee.sh 
+# Name.......: setup_odsee.sh
 # Author.....: Stefan Oehrli (oes) stefan.oehrli@trivadis.com
 # Editor.....: Stefan Oehrli
 # Date.......: 2017.12.19
-# Revision...: 
-# Purpose....: Setup script for oracle environment to build docker OUD image 
+# Revision...:
+# Purpose....: Setup script for oracle environment to build docker OUD image
 # Notes......: OUD Base scripts are downloaded from github
 # Reference..: --
 # License....: CDDL 1.0 + GPL 2.0
 # ----------------------------------------------------------------------
-# Modified...: 
+# Modified...:
 # see git revision history for more information on changes/updates
-# TODO.......: 
+# TODO.......:
 # TODO parametize OUD DATA
 # ----------------------------------------------------------------------
 
 # Download URL for oud base package
-OUDBASE_URL="https://github.com/oehrlis/oudbase/raw/master/build/oudbase_install.sh"
+OUDBASE_URL="https://github.com/oehrlis/oudbase/releases/download/v1.7.5/oudbase_install.sh"
 OUDBASE_PKG="oudbase_install.sh"
 mkdir -p ${DOWNLOAD}
 chmod 777 ${DOWNLOAD}
@@ -32,7 +32,7 @@ echo "%_install_langs   en" >/etc/rpm/macros.lang
 # update existing packages
 yum upgrade -y
 
-# install basic packages 
+# install basic packages
 yum install -y unzip zip gzip tar hostname which procps-ng libstdc++.i686 glibc.i686 zlib.i686
 
 echo "--- Setup Oracle OFA environment -----------------------------------------------"
@@ -64,7 +64,7 @@ install --owner oracle --group oinstall --mode=775 --verbose --directory \
     ${ORACLE_ROOT} \
     ${ORACLE_DATA} \
     ${ORACLE_BASE} \
-    ${ORACLE_DATA}/scripts 
+    ${ORACLE_DATA}/scripts
 
 ln -s ${ORACLE_DATA}/scripts /docker-entrypoint-initdb.d
 
